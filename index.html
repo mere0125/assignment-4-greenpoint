@@ -55,6 +55,10 @@
     .figure::before,.figure::after{content:"";position:absolute;z-index:4;width:38px;height:38px;pointer-events:none}
     .figure::before{left:7px;top:7px;border-left:1px solid rgba(240,163,58,.78);border-top:1px solid rgba(240,163,58,.78)}
     .figure::after{right:7px;bottom:7px;border-right:1px solid rgba(198,164,210,.68);border-bottom:1px solid rgba(198,164,210,.68)}
+    .frame-gap{position:absolute;z-index:5;right:-2px;top:43%;width:5px;height:68px;background:#100c14;pointer-events:none}
+    .frame-gap::before,.frame-gap::after{content:"";position:absolute;right:0;width:15px;height:1px;background:rgba(240,163,58,.72)}
+    .frame-gap::before{top:0}.frame-gap::after{bottom:0;background:rgba(198,164,210,.58)}
+    .archive-mark{position:absolute;z-index:2;left:18px;bottom:14px;color:rgba(198,164,210,.2);font-size:11px;letter-spacing:.11em;font-style:italic;pointer-events:none;user-select:none}
     .figure-head{position:absolute;z-index:3;left:16px;right:16px;top:14px;display:flex;justify-content:space-between;gap:20px;pointer-events:none}
     .figure-title{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink)}
     .legend{display:flex;gap:14px;color:var(--muted);font-size:11px}
@@ -129,6 +133,8 @@
     <div class="figure" id="figure">
       <div class="figure-head"><div class="figure-title" id="figureTitle">Reports at the selected hour</div><div class="legend" id="figureLegend"><span><i class="swatch trail"></i>previous 6h</span><span><i class="swatch purple"></i>current</span><span><i class="swatch orange"></i>changed</span></div></div>
       <svg id="viz" role="img" aria-label="Map or hourly chart of simulated 311 requests"></svg>
+      <div class="archive-mark" id="archiveMark" aria-hidden="true">archive 311 · 2030.06.03 · 00:00 · sample 311</div>
+      <span class="frame-gap" aria-hidden="true"></span>
       <div class="empty-state" id="emptyState"><strong>No reports at this hour</strong><span id="emptyText"></span></div>
       <div class="tooltip" id="tooltip"></div>
     </div>
@@ -230,6 +236,9 @@
     }
     $('nightMetric').textContent=(mean(r.changedNightShares)*100).toFixed(1)+'%';
     $('clockLabel').textContent=fmtHour(state.hour);
+    const archiveDay=String(3+Math.floor(state.hour/24)).padStart(2,'0');
+    const archiveHour=String(state.hour%24).padStart(2,'0');
+    $('archiveMark').textContent=`archive 311 · 2030.06.${archiveDay} · ${archiveHour}:00 · sample ${state.seed}`;
     $('multiplierValue').textContent=state.multiplier.toFixed(2)+'×';
     $('seedNote').textContent=`Repeatable seed ${state.seed}. This redraws the seven historical days used by the run.`;
   }
