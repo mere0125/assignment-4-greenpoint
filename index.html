@@ -21,6 +21,10 @@
     h1{margin:0;font-family:Georgia,serif;font-size:clamp(34px,5vw,72px);font-weight:400;letter-spacing:-.035em}
     header p{max-width:730px;margin:12px 0 0;color:var(--muted);font-size:15px;line-height:1.55}
     .stamp{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--purple);font-size:12px;text-align:right;line-height:1.55}
+    .archive-seal{position:absolute;right:38px;top:22px;width:112px;height:58px;display:grid;place-items:center;border:1px solid rgba(198,164,210,.42);outline:1px dashed rgba(240,163,58,.26);outline-offset:-5px;color:rgba(198,164,210,.48);font-size:10px;line-height:1.05;letter-spacing:.12em;text-align:center;text-transform:uppercase;transform:rotate(4deg);opacity:.72;mix-blend-mode:screen;pointer-events:none;filter:blur(.08px)}
+    .archive-seal::before{content:"";position:absolute;inset:2px;border:1px solid rgba(198,164,210,.2);background:repeating-linear-gradient(167deg,transparent 0 7px,rgba(13,10,17,.7) 7px 8px,transparent 8px 15px);opacity:.6}
+    .archive-seal::after{content:"filed";position:absolute;left:10px;right:10px;bottom:7px;border-top:1px solid rgba(240,163,58,.32);padding-top:3px;font-size:7px;letter-spacing:.2em;color:rgba(240,163,58,.48)}
+    .archive-seal span{position:relative;z-index:1;margin-top:-8px}
     main{display:grid;grid-template-columns:310px minmax(0,1fr);min-height:720px}
     aside{position:relative;border-right:0;padding:24px 22px 38px;background:linear-gradient(180deg,#120e16,#0d0a11)}
     aside::after{content:"";position:absolute;right:0;top:24px;bottom:38px;width:1px;background:linear-gradient(180deg,transparent 0,rgba(198,164,210,.42) 8%,rgba(118,84,135,.72) 33%,rgba(240,163,58,.65) 33% 39%,rgba(118,84,135,.45) 39% 78%,transparent 100%);box-shadow:5px 0 18px rgba(118,84,135,.12)}
@@ -77,7 +81,7 @@
     .method-strip::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,rgba(240,163,58,.8) 0 36px,transparent 36px 47px,rgba(198,164,210,.62) 47px 44%,rgba(118,84,135,.18) 79%,transparent)}
     .method-strip div{font-size:11px;line-height:1.5;color:var(--muted)}
     .method-strip strong{display:block;color:var(--purple);font:11px ui-monospace,SFMono-Regular,Menlo,monospace;margin-bottom:5px}
-    @media(max-width:900px){main{grid-template-columns:1fr} aside{border-right:0;border-bottom:0}aside::after{left:22px;right:22px;top:auto;bottom:0;width:auto;height:1px;background:linear-gradient(90deg,var(--orange),rgba(198,164,210,.54) 35%,transparent)}.metrics{grid-template-columns:1fr 1fr}.metric:nth-child(2)::after{display:none}.metric:nth-child(-n+2){border-bottom:1px solid rgba(118,84,135,.34)}.caption{grid-template-columns:1fr}.method-strip{grid-template-columns:1fr 1fr}.stamp{display:none}}
+    @media(max-width:900px){main{grid-template-columns:1fr} aside{border-right:0;border-bottom:0}aside::after{left:22px;right:22px;top:auto;bottom:0;width:auto;height:1px;background:linear-gradient(90deg,var(--orange),rgba(198,164,210,.54) 35%,transparent)}.metrics{grid-template-columns:1fr 1fr}.metric:nth-child(2)::after{display:none}.metric:nth-child(-n+2){border-bottom:1px solid rgba(118,84,135,.34)}.caption{grid-template-columns:1fr}.method-strip{grid-template-columns:1fr 1fr}.stamp,.archive-seal{display:none}}
     @media(max-width:520px){header{padding:25px 20px}header::after{left:20px;right:20px}.stage{padding:18px 12px}.metrics{grid-template-columns:1fr}.metric:not(:last-child){border-bottom:1px solid rgba(118,84,135,.34)}.metric::after{display:none}.method-strip{grid-template-columns:1fr}}
     @media(hover:none),(pointer:coarse){.cursor-glow{display:none}}
   </style>
@@ -85,6 +89,7 @@
 <body>
 <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 <header>
+  <div class="archive-seal" aria-hidden="true"><span>311 archive<br>Greenpoint<br>2015</span></div>
   <div>
     <h1>After the Call</h1>
     <p>An interactive sensitivity study of Greenpoint’s 2015 noise-related 311 archive. It asks how the visible geography and workload of complaints might change when nighttime reporting changes. It models reports, not sound.</p>
